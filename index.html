@@ -4,12 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Naveen — Forex</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root{--bg:#0f1724;--card:#0b1220;--accent:#7dd3fc;--muted:#9ca3af}
     html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;overflow-x:hidden}
     body{display:flex;align-items:flex-start;justify-content:center;background:linear-gradient(180deg,#001219 0%,#002a3a 100%);color:var(--accent);padding:20px}
-    .card{background:rgba(255,255,255,0.05);padding:30px 24px;border-radius:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6);max-width:1100px;width:100%;margin:0 auto}
+    .card{background:rgba(255,255,255,0.05);padding:30px 24px;border-radius:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6);max-width:900px;width:100%;margin:0 auto}
     img.logo{width:70px;height:70px;border-radius:50%;margin-bottom:12px;border:2px solid #7dd3fc}
     img.banner{width:100%;max-height:180px;object-fit:cover;border-radius:12px;margin-bottom:16px}
     h1{margin:0 0 12px;font-size:clamp(24px,5vw,40px);letter-spacing:0.6px;color:var(--accent);text-align:center}
@@ -27,8 +26,6 @@
     .metric-label{color:#9ca3af;font-size:12px;margin-bottom:4px}
     .metric-value{color:#fff;font-size:15px;font-weight:600}
     .growth{margin-top:16px;background:rgba(34,197,94,0.1);padding:12px;border-radius:10px;font-weight:600;color:#22c55e;text-align:center}
-    .chart-container{margin-top:20px;background:rgba(255,255,255,0.05);padding:16px;border-radius:10px}
-    canvas{max-width:100%}
   </style>
 </head>
 <body>
@@ -72,46 +69,8 @@
       <div class="metric-box"><div class="metric-label">Maximal Drawdown</div><div class="metric-value">$74.34 (50.91%)</div></div>
     </div>
 
-    <!-- Balance Growth Chart -->
-    <div class="chart-container">
-      <h2>📈 Balance Growth</h2>
-      <canvas id="balanceChart"></canvas>
-    </div>
-
     <a class="btn" href="https://wa.me/918309466983" target="_blank">📞 Chat on WhatsApp</a>
     <footer>© 2025 Naveen Forex Trading Solutions</footer>
   </main>
-
-  <script>
-    const ctx = document.getElementById('balanceChart');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['Initial Balance', 'Final Balance'],
-        datasets: [{
-          label: 'Balance ($)',
-          data: [100, 328.72],
-          fill: true,
-          borderColor: '#22c55e',
-          backgroundColor: 'rgba(34,197,94,0.2)',
-          tension: 0.3,
-          pointBackgroundColor: '#22c55e',
-          pointRadius: 5
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: { mode: 'index', intersect: false }
-        },
-        scales: {
-          x: { ticks: { color: '#9ca3af' } },
-          y: { ticks: { color: '#9ca3af' } }
-        }
-      }
-    });
-  </script>
 </body>
 </html>
