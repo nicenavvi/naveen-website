@@ -4,43 +4,101 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Naveen — Forex</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* మీ قبلی style ఇక్కడనే ఉంచండి */
     :root{--bg:#0f1724;--card:#0b1220;--accent:#7dd3fc;--muted:#9ca3af}
     html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
     body{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#001219 0%,#002a3a 100%);color:var(--accent)}
-    .card{background:rgba(255,255,255,0.05);padding:40px 32px;border-radius:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6);text-align:center;max-width:800px;margin:24px}
+    .card{background:rgba(255,255,255,0.05);padding:40px 32px;border-radius:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6);text-align:center;max-width:900px;margin:24px}
     img.logo{width:80px;height:80px;border-radius:50%;margin-bottom:16px;border:2px solid #7dd3fc}
     img.banner{width:100%;max-height:250px;object-fit:cover;border-radius:12px;margin-bottom:20px}
     h1{margin:0 0 16px;font-size:clamp(28px,6vw,48px);letter-spacing:0.6px;color:var(--accent)}
+    h2{margin:24px 0 12px;font-size:24px;color:#facc15}
     p{margin:0 0 24px;font-size:clamp(16px,2.5vw,20px);color:var(--muted)}
+    .highlight{margin:0 0 24px;font-size:18px;font-weight:600;color:#22c55e}
     .name{display:inline-block;background:linear-gradient(90deg,#7dd3fc,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
     .btn{display:inline-block;padding:12px 20px;background:linear-gradient(90deg,#22c55e,#16a34a);color:white;font-size:16px;font-weight:600;text-decoration:none;border-radius:10px;transition:0.2s}
     .btn:hover{opacity:0.9;transform:scale(1.05)}
     footer{margin-top:20px;color:#6b7280;font-size:13px}
+    .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:20px;text-align:left}
+    .metric-box{background:rgba(255,255,255,0.06);padding:16px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+    .metric-label{color:#9ca3af;font-size:14px;margin-bottom:6px}
+    .metric-value{color:#fff;font-size:18px;font-weight:600}
+    .growth{margin-top:20px;background:rgba(34,197,94,0.1);padding:16px;border-radius:12px;font-weight:600;color:#22c55e}
+    .chart-container{margin-top:30px;background:rgba(255,255,255,0.05);padding:20px;border-radius:12px}
+    canvas{max-width:100%}
   </style>
 </head>
 <body>
   <main class="card">
-    <!-- Logo, Banner ఉంటే ఇక్కడ -->
+    <!-- Logo, Banner -->
     <img class="logo" src="logo.png" alt="Logo">
     <img class="banner" src="banner.jpg" alt="Banner">
 
     <h1>My name is <span class="name">naveen</span></h1>
     <p>Forex Indicators and EAs Designing for you within 24 hours.</p>
+    <p class="highlight">💡 If anybody has a strategy, I will convert it into auto in TradingView or MT4/MT5 within 24 hours.</p>
 
-    <!-- YouTube వీడియో embed ఇక్కడ -->
-    <div style="margin:20px 0; max-width:100%;">
-      <iframe width="100%" height="400"
-        src="https://www.youtube.com/embed/IT-UO6WLQGQ"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+    <!-- GoldSmartHold Results Section -->
+    <h2>🌟 GoldSmartHold EA Backtest Results</h2>
+    <p><strong>Pair:</strong> XAUUSD (Gold Spot) | <strong>Period:</strong> 2024-12-30 → 2025-09-09 (H1 timeframe)</p>
+    <p><strong>Initial Deposit:</strong> $100 | <strong>Final Balance:</strong> $328.72</p>
+    <div class="growth">Net Profit: +$228.72 (229% Growth)</div>
+
+    <div class="metrics">
+      <div class="metric-box"><div class="metric-label">Total Trades</div><div class="metric-value">52</div></div>
+      <div class="metric-box"><div class="metric-label">Win Rate</div><div class="metric-value">71.15%</div></div>
+      <div class="metric-box"><div class="metric-label">Profit Factor</div><div class="metric-value">3.98</div></div>
+      <div class="metric-box"><div class="metric-label">Gross Profit</div><div class="metric-value">$305.43</div></div>
+      <div class="metric-box"><div class="metric-label">Gross Loss</div><div class="metric-value">-$76.71</div></div>
+      <div class="metric-box"><div class="metric-label">Expected Payoff</div><div class="metric-value">$4.40 / trade</div></div>
+      <div class="metric-box"><div class="metric-label">Largest Profit Trade</div><div class="metric-value">$23.67</div></div>
+      <div class="metric-box"><div class="metric-label">Largest Loss Trade</div><div class="metric-value">-$11.31</div></div>
+      <div class="metric-box"><div class="metric-label">Max Consecutive Wins</div><div class="metric-value">10 ($59.29)</div></div>
+      <div class="metric-box"><div class="metric-label">Max Consecutive Losses</div><div class="metric-value">2 (-$15.61)</div></div>
+      <div class="metric-box"><div class="metric-label">Absolute Drawdown</div><div class="metric-value">$40.57</div></div>
+      <div class="metric-box"><div class="metric-label">Maximal Drawdown</div><div class="metric-value">$74.34 (50.91%)</div></div>
+    </div>
+
+    <!-- Balance Growth Chart -->
+    <div class="chart-container">
+      <h2>📈 Balance Growth</h2>
+      <canvas id="balanceChart"></canvas>
     </div>
 
     <a class="btn" href="https://wa.me/918309466983" target="_blank">📞 Chat on WhatsApp</a>
     <footer>© 2025 Naveen Forex Trading Solutions</footer>
   </main>
+
+  <script>
+    const ctx = document.getElementById('balanceChart');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Initial Balance', 'Final Balance'],
+        datasets: [{
+          label: 'Balance ($)',
+          data: [100, 328.72],
+          fill: true,
+          borderColor: '#22c55e',
+          backgroundColor: 'rgba(34,197,94,0.2)',
+          tension: 0.3,
+          pointBackgroundColor: '#22c55e',
+          pointRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: { mode: 'index', intersect: false }
+        },
+        scales: {
+          x: { ticks: { color: '#9ca3af' } },
+          y: { ticks: { color: '#9ca3af' } }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
